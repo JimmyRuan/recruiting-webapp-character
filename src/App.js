@@ -1,25 +1,55 @@
-import { useState } from 'react';
+import React from 'react';
 import './App.css';
-import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from './consts.js';
+import Character from './components/Character';
+import PartySkillCheck from './components/PartySkillCheck';
+import useCharacterOperations from './hooks/useCharacterOperations';
+import { getCharacterAvailablePoints } from './utils/characterUtils';
 
+const App = () => {
+    const {
+        characters,
+        handleAddCharacter,
+        handleResetCharacters,
+        handleIncrementAttribute,
+        handleDecrementAttribute,
+        handleIncrementSkill,
+        handleDecrementSkill,
+        handleSelectClass,
+    } = useCharacterOperations();
 
-function App() {
-  const [num, setNum] = useState(0);
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>React Coding Exercise</h1>
-      </header>
-      <section className="App-section">
-        <div>
-          Value:
-          {num}
-          <button>+</button>
-          <button>-</button>
+    return (
+        <div className="App">
+            <header className="App-header">
+                <h1>Character Builder</h1>
+                <button onClick={handleAddCharacter}>Add New Character</button>
+                <button onClick={handleResetCharacters}>Reset All Characters</button>
+            </header>
+
+            <section className="App-section">
+                <div className="App-sub-section">
+                    <PartySkillCheck />
+                </div>
+
+                {Object.keys(characters).map((characterId) => {
+                    const character = characters[characterId];
+                    const availablePoints = getCharacterAvailablePoints(character);
+
+                    return (
+                        <Character
+                            key={characterId}
+                            character={character}
+                            onIncrementAttribute={(attr) => handleIncrementAttribute(characterId, attr)}
+                            onDecrementAttribute={(attr) => handleDecrementAttribute(characterId, attr)}
+                            onIncrementSkill={(skill) => handleIncrementSkill(characterId, skill)}
+                            onDecrementSkill={(skill) => handleDecrementSkill(characterId, skill)}
+                            onSelectClass={(className) => handleSelectClass(characterId, className)}
+                            availablePoints={availablePoints}
+                        />
+                    );
+                })}
+            </section>
         </div>
-      </section>
-    </div>
-  );
-}
+    );
+};
 
 export default App;

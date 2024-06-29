@@ -1,46 +1,71 @@
-.App {
-  min-height: 100vh;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
+/* src/App.css */
 .App-header {
-  background-color: #282c34;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 10px;
+  background-color: #282c34;
   color: white;
 }
 
 .App-section {
-  flex: 1 1 0;
-  background-color: hsl(220deg 13% 13%);
-  color: white;
+  padding: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.Character {
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Character h2 {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.Character-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Character-section {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.Character-section:last-child {
+  margin-right: 0;
+}
+
+.Character .AttributesList,
+.Character .SkillsList,
+.Character .ClassList,
+.Character .ClassRequirements {
+  margin-bottom: 10px;
+}
+
+.SkillsList {
+  min-width: 500px;
+}
+
+.skill-name, .skill-points, .skill-modifier {
+  padding-right: 0.5rem;
+}
+
+.skill-modifier {
+  padding-left: 0.5rem;
+}
+
+
+
+.App-sub-section {
+  border: 2px solid lightgray;
+}
+
+.PartySkillCheck {
+  margin: 1rem auto 1rem;
+  width: 300px;
+  padding: 1rem;
 }
